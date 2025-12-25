@@ -2,438 +2,211 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Candy Massage & Wellness</title>
-  <meta name="description" content="Candy Massage & Wellness — relaxing massage sessions designed to help you unwind, reset, and feel your best." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Candy Massage & Wellness – Montreal</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#0b1020;
-      --bg2:#101a36;
-      --card:rgba(255,255,255,.06);
-      --stroke:rgba(255,255,255,.10);
-      --text:#eef2ff;
-      --muted:#b7c0ff;
-      --accent:#f6b3c6;
-      --accent2:#7ad7c5;
-      --shadow: 0 18px 60px rgba(0,0,0,.35);
-      --radius: 22px;
+      --bg:#0c1022;
+      --card:rgba(255,255,255,.08);
+      --stroke:rgba(255,255,255,.15);
+      --text:#eef1ff;
+      --muted:#b9c1ff;
+      --pink:#ff8fb3;
+      --green:#25d366;
+      --radius:18px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      font-family:Inter,system-ui;
+      background:linear-gradient(135deg,#0c1022,#141a3a);
       color:var(--text);
-      background:
-        radial-gradient(1000px 600px at 10% 10%, rgba(246,179,198,.18), transparent 60%),
-        radial-gradient(900px 700px at 85% 70%, rgba(122,215,197,.14), transparent 55%),
-        linear-gradient(120deg,var(--bg),var(--bg2));
-      overflow-x:hidden;
     }
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1180px;margin:0 auto;padding:24px}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1200px;margin:auto;padding:24px}
+
+    /* Floating buttons */
+    .float-btn{
+      position:fixed;
+      right:18px;
+      padding:14px 18px;
+      border-radius:999px;
+      font-weight:700;
+      z-index:999;
+      box-shadow:0 12px 30px rgba(0,0,0,.35);
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .call{bottom:88px;background:var(--pink);color:#000}
+    .text{bottom:24px;background:var(--green);color:#000}
+
+    /* Glass cards */
     .glass{
       background:var(--card);
       border:1px solid var(--stroke);
       border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter:blur(14px);
+      box-shadow:0 18px 40px rgba(0,0,0,.35);
     }
 
-    /* Floating orbs */
-    .orbs span{
-      position:fixed;
-      z-index:-1;
-      filter:blur(42px);
-      opacity:.45;
-      border-radius:999px;
-      animation: float 16s ease-in-out infinite;
+    header{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      margin-top:30px;
+      padding:32px;
     }
-    .orbs span:nth-child(1){width:280px;height:280px;left:6%;top:12%;background:var(--accent)}
-    .orbs span:nth-child(2){width:340px;height:340px;left:72%;top:56%;background:var(--accent2);animation-delay:-6s}
-    .orbs span:nth-child(3){width:220px;height:220px;left:58%;top:18%;background:#8ea7ff;animation-delay:-12s}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-32px)}}
+    h1{
+      font-family:"Playfair Display";
+      font-size:clamp(36px,5vw,60px);
+      margin:0 0 12px;
+    }
+    .lead{color:var(--muted);max-width:55ch;line-height:1.7}
 
-    /* Navbar */
-    .nav{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 18px;
-      position:sticky;top:14px;z-index:50;
+    .hero-img{
+      width:100%;
+      aspect-ratio:4/5;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid var(--stroke);
     }
-    .brand{display:flex;gap:10px;align-items:center}
-    .logo{
-      width:40px;height:40px;border-radius:14px;
-      background:linear-gradient(135deg, rgba(246,179,198,.9), rgba(122,215,197,.85));
-      box-shadow:0 12px 30px rgba(0,0,0,.25);
-    }
-    .brand h3{margin:0;font-family:"Playfair Display";letter-spacing:.2px}
-    .links{display:flex;gap:16px;align-items:center}
-    .links a{color:var(--muted);font-weight:500}
-    .links a:hover{color:var(--text)}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding:12px 16px;border-radius:14px;
-      border:1px solid rgba(246,179,198,.35);
-      background:rgba(246,179,198,.14);
-      color:var(--text);
-      cursor:pointer;
-      transition:transform .15s ease, background .15s ease;
-      font-weight:600;
-    }
-    .btn:hover{transform:translateY(-1px);background:rgba(246,179,198,.18)}
-    .btn.secondary{
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
+    .hero-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:56px 24px;margin-top:18px}
-    .badge{
-      display:inline-flex;gap:10px;align-items:center;
-      padding:8px 12px;border-radius:999px;
-      border:1px solid rgba(122,215,197,.35);
-      background:rgba(122,215,197,.12);
-      color:var(--text);
-      width:fit-content;
-      font-size:13px;font-weight:600;
-    }
-    .badge .dot{width:8px;height:8px;border-radius:99px;background:var(--accent2)}
-    h1{margin:14px 0 10px;font-family:"Playfair Display";font-size:clamp(34px,5.2vw,62px);line-height:1.05}
-    .lead{margin:0;color:var(--muted);font-size:16px;line-height:1.7;max-width:56ch}
-    .cta{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
-    .heroCard{padding:16px}
-    .heroImg{
-      width:100%;aspect-ratio:4/5;border-radius:18px;overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      position:relative;
-    }
-    .heroImg img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05)}
-    .heroImg::after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg, transparent 45%, rgba(0,0,0,.55));
-    }
-    .miniInfo{
-      margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px
+    .info{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:18px;
     }
     .pill{
-      padding:12px;border-radius:16px;border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      color:var(--muted);font-size:13px;line-height:1.35;
-    }
-    .pill b{display:block;color:var(--text);margin-bottom:4px}
-
-    /* Sections */
-    section{margin-top:22px}
-    .sectionHeader{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:18px 0 12px}
-    .sectionHeader h2{margin:0;font-family:"Playfair Display";font-size:30px}
-    .sectionHeader p{margin:0;color:var(--muted);max-width:60ch}
-    .grid{display:grid;gap:14px}
-    .grid.cards{grid-template-columns:repeat(3,1fr)}
-    .card{padding:18px;border-radius:18px}
-    .card h3{margin:2px 0 8px}
-    .card p{margin:0;color:var(--muted);line-height:1.65}
-    .tagRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .tag{
-      font-size:12px;color:var(--text);
-      padding:8px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
+      padding:12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--stroke);
+      font-size:14px;
     }
 
-    /* Pricing */
-    .pricing{grid-template-columns:repeat(3,1fr)}
+    section{margin-top:40px}
+    h2{
+      font-family:"Playfair Display";
+      font-size:32px;
+      margin-bottom:16px;
+    }
+
+    .prices{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+    .price-card{
+      padding:20px;
+      text-align:center;
+    }
     .price{
       font-family:"Playfair Display";
-      font-size:34px;margin:10px 0 4px
+      font-size:34px;
+      margin:10px 0;
+      color:var(--pink);
     }
-    .small{color:var(--muted);font-size:13px;margin:0}
-    ul{margin:12px 0 0;padding-left:18px;color:var(--muted);line-height:1.7}
 
-    /* Gallery */
-    .gallery{grid-template-columns:repeat(12,1fr)}
-    .g{grid-column:span 4;aspect-ratio:4/3;overflow:hidden;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
-    .g img{width:100%;height:100%;object-fit:cover;display:block}
-    .g.wide{grid-column:span 8;aspect-ratio:8/3}
-    .note{padding:14px 16px;border-radius:16px;border:1px dashed rgba(255,255,255,.18);color:var(--muted);background:rgba(255,255,255,.04)}
-
-    /* Footer */
-    footer{margin:24px 0 10px;padding:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-    footer .muted{color:var(--muted);font-size:13px}
-
-    /* Modal */
-    .modalBack{
-      position:fixed;inset:0;background:rgba(0,0,0,.55);
-      display:none;align-items:center;justify-content:center;padding:20px;z-index:100;
+    footer{
+      margin:40px 0 20px;
+      padding:20px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
     }
-    .modal{
-      width:min(560px,100%);padding:18px;border-radius:18px;
-      background:rgba(20,24,46,.88);border:1px solid rgba(255,255,255,.14);box-shadow:var(--shadow);
-      backdrop-filter: blur(16px);
-    }
-    .modalHeader{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .modalHeader h3{margin:0;font-family:"Playfair Display"}
-    .x{background:transparent;border:0;color:var(--muted);font-size:22px;cursor:pointer}
-    .form{margin-top:12px;display:grid;gap:10px}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    input,select,textarea{
-      width:100%;padding:12px 12px;border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
-      color:var(--text);
-      outline:none;
-    }
-    textarea{min-height:90px;resize:vertical}
-    .helper{color:var(--muted);font-size:13px;line-height:1.5;margin:10px 0 0}
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero{grid-template-columns:1fr; padding:26px 18px}
-      .grid.cards, .pricing{grid-template-columns:1fr}
-      .gallery{grid-template-columns:1fr}
-      .g,.g.wide{grid-column:auto;aspect-ratio:4/3}
-      .links{display:none}
+    @media(max-width:900px){
+      header{grid-template-columns:1fr}
+      .prices{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:500px){
+      .prices{grid-template-columns:1fr}
     }
   </style>
 </head>
+
 <body>
-  <div class="orbs" aria-hidden="true">
-    <span></span><span></span><span></span>
-  </div>
 
-  <div class="container">
-    <nav class="nav glass">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h3>Candy</h3>
-          <div style="color:var(--muted);font-size:12px;margin-top:2px">Massage & Wellness</div>
-        </div>
+<!-- FLOATING BUTTONS -->
+<a class="float-btn call" href="tel:+14384355741">📞 Call</a>
+<a class="float-btn text" href="sms:+14384355741">💬 Text</a>
+
+<div class="container">
+
+  <!-- HERO -->
+  <header class="glass">
+    <div>
+      <h1>Candy Massage & Wellness</h1>
+      <p class="lead">
+        A calm, professional space focused on relaxation, comfort,
+        and stress relief. Each session is tailored to your needs,
+        with attention to pressure, breathing, and recovery.
+      </p>
+
+      <div class="info">
+        <div class="pill"><b>📍 Location:</b> Montreal</div>
+        <div class="pill"><b>📞 Phone:</b> +1 438 435 5741</div>
+        <div class="pill"><b>🕒 Availability:</b> By appointment</div>
+        <div class="pill"><b>💆 Style:</b> Relaxation & Deep Tissue</div>
       </div>
-      <div class="links">
-        <a href="#services">Services</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <button class="btn" id="bookBtn">Book a Session</button>
-    </nav>
-
-    <header class="hero glass">
-      <div>
-        <div class="badge"><span class="dot"></span> Calm • Comfort • Care</div>
-        <h1>Relax, reset, and feel your best.</h1>
-        <p class="lead">
-          Welcome to Candy Massage & Wellness — a warm, professional space for stress relief and full-body relaxation.
-          Each session is tailored to your comfort and needs, with a focus on breathing, pressure control, and recovery.
-        </p>
-        <div class="cta">
-          <button class="btn" id="bookBtn2">Book Now</button>
-          <a class="btn secondary" href="#services">Explore Services</a>
-        </div>
-        <div style="margin-top:16px" class="note">
-          <b style="color:var(--text)">Note:</b> This website is designed for <b>professional wellness massage</b>.
-          Use clean, non-explicit photos and clear policies to keep it platform-safe and client-friendly.
-        </div>
-      </div>
-
-      <div class="heroCard">
-        <div class="heroImg">
-          <!-- Replace with a professional, non-explicit photo -->
-          <img src="images/candy-hero.jpg" alt="Candy — Massage & Wellness" />
-        </div>
-        <div class="miniInfo">
-          <div class="pill"><b>Location</b> Your City / Area</div>
-          <div class="pill"><b>Hours</b> Mon–Sun • By appointment</div>
-          <div class="pill"><b>Style</b> Relaxation • Deep tissue</div>
-          <div class="pill"><b>Contact</b> DM / Text / Booking form</div>
-        </div>
-      </div>
-    </header>
-
-    <section id="services">
-      <div class="sectionHeader">
-        <div>
-          <h2>Services</h2>
-          <p>Choose the session that matches your mood — from gentle relaxation to deeper pressure for tight muscles.</p>
-        </div>
-      </div>
-
-      <div class="grid cards">
-        <div class="card glass">
-          <h3>Relaxation Massage</h3>
-          <p>Slow, soothing strokes designed to calm the nervous system and help you unwind.</p>
-          <div class="tagRow">
-            <span class="tag">Light–medium pressure</span>
-            <span class="tag">Stress relief</span>
-            <span class="tag">Full-body</span>
-          </div>
-        </div>
-
-        <div class="card glass">
-          <h3>Deep Tissue</h3>
-          <p>Targeted pressure for tight areas (neck, shoulders, back, legs) to support recovery and mobility.</p>
-          <div class="tagRow">
-            <span class="tag">Medium–firm</span>
-            <span class="tag">Knots & tension</span>
-            <span class="tag">Athletic support</span>
-          </div>
-        </div>
-
-        <div class="card glass">
-          <h3>Focus Session</h3>
-          <p>Short session focused on one main area to quickly ease pain and stiffness.</p>
-          <div class="tagRow">
-            <span class="tag">30–45 min</span>
-            <span class="tag">Back / shoulders</span>
-            <span class="tag">Neck</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing">
-      <div class="sectionHeader">
-        <div>
-          <h2>Pricing</h2>
-          <p>Transparent pricing. Tips are optional. Please arrive on time for the full experience.</p>
-        </div>
-      </div>
-
-      <div class="grid pricing">
-        <div class="card glass">
-          <h3>30 Minutes</h3>
-          <div class="price">$XX</div>
-          <p class="small">Best for a quick reset</p>
-          <ul>
-            <li>Focus: one key area</li>
-            <li>Light–medium pressure</li>
-            <li>Breathing & release</li>
-          </ul>
-        </div>
-
-        <div class="card glass" style="border:1px solid rgba(246,179,198,.35)">
-          <h3>60 Minutes</h3>
-          <div class="price">$XX</div>
-          <p class="small">Most popular</p>
-          <ul>
-            <li>Full-body relaxation</li>
-            <li>Pressure adjusted to comfort</li>
-            <li>After-care guidance</li>
-          </ul>
-        </div>
-
-        <div class="card glass">
-          <h3>90 Minutes</h3>
-          <div class="price">$XX</div>
-          <p class="small">Deep relaxation & recovery</p>
-          <ul>
-            <li>More time on tight spots</li>
-            <li>Deep tissue options</li>
-            <li>Best value session</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="gallery">
-      <div class="sectionHeader">
-        <div>
-          <h2>Gallery</h2>
-          <p>Add professional photos (spa vibe, clean background, friendly portrait). Avoid explicit images for safety.</p>
-        </div>
-      </div>
-
-      <div class="grid gallery">
-        <div class="g wide glass"><img src="images/gallery-1.jpg" alt="Wellness photo 1"></div>
-        <div class="g glass"><img src="images/gallery-2.jpg" alt="Wellness photo 2"></div>
-        <div class="g glass"><img src="images/gallery-3.jpg" alt="Wellness photo 3"></div>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="sectionHeader">
-        <div>
-          <h2>FAQ</h2>
-          <p>Clear expectations make sessions better for everyone.</p>
-        </div>
-      </div>
-
-      <div class="grid" style="grid-template-columns:1fr;gap:12px">
-        <div class="card glass">
-          <h3 style="margin:0 0 6px">How do I book?</h3>
-          <p style="margin:0;color:var(--muted)">Use the “Book a Session” button and send your preferred date/time and service.</p>
-        </div>
-        <div class="card glass">
-          <h3 style="margin:0 0 6px">What should I expect?</h3>
-          <p style="margin:0;color:var(--muted)">A calm, professional experience focused on relaxation and muscle recovery. Pressure is always adjusted to your comfort.</p>
-        </div>
-        <div class="card glass">
-          <h3 style="margin:0 0 6px">Cancellation policy?</h3>
-          <p style="margin:0;color:var(--muted)">Please cancel at least 24 hours in advance so the spot can be offered to someone else.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="glass">
-      <div class="muted">© <span id="year"></span> Candy Massage & Wellness</div>
-      <div class="muted">Designed with care • <a href="#services" style="color:var(--text)">Back to top</a></div>
-    </footer>
-  </div>
-
-  <!-- Booking Modal -->
-  <div class="modalBack" id="modalBack" role="dialog" aria-modal="true" aria-label="Booking form">
-    <div class="modal">
-      <div class="modalHeader">
-        <h3>Book a Session</h3>
-        <button class="x" id="closeModal" aria-label="Close">×</button>
-      </div>
-      <form class="form" onsubmit="event.preventDefault(); alert('Form demo: connect this to email or WhatsApp.');">
-        <div class="row">
-          <input required placeholder="Your name" />
-          <input required placeholder="Phone or email" />
-        </div>
-        <div class="row">
-          <select required>
-            <option value="" disabled selected>Select service</option>
-            <option>Relaxation Massage</option>
-            <option>Deep Tissue</option>
-            <option>Focus Session</option>
-          </select>
-          <select required>
-            <option value="" disabled selected>Select duration</option>
-            <option>30 minutes</option>
-            <option>60 minutes</option>
-            <option>90 minutes</option>
-          </select>
-        </div>
-        <textarea placeholder="Preferred date/time + any notes (pressure, focus area, etc.)"></textarea>
-        <button class="btn" type="submit">Send Booking Request</button>
-        <div class="helper">
-          Tip: You can connect this form to a service like Formspree, Netlify Forms, or a simple email link.
-        </div>
-      </form>
     </div>
-  </div>
 
-  <script>
-    const modalBack = document.getElementById('modalBack');
-    const openers = [document.getElementById('bookBtn'), document.getElementById('bookBtn2')];
-    const closeModal = document.getElementById('closeModal');
+    <div class="hero-img">
+      <!-- Replace with your image -->
+      <img src="images/candy-hero.jpg" alt="Candy Massage Montreal">
+    </div>
+  </header>
 
-    function openModal(){ modalBack.style.display = 'flex'; }
-    function close(){ modalBack.style.display = 'none'; }
+  <!-- PRICING -->
+  <section>
+    <h2>Services & Pricing</h2>
+    <div class="prices">
+      <div class="glass price-card">
+        <h3>15 Minutes</h3>
+        <div class="price">$120</div>
+        <p>Focused relaxation</p>
+      </div>
 
-    openers.forEach(b => b && b.addEventListener('click', openModal));
-    closeModal.addEventListener('click', close);
-    modalBack.addEventListener('click', (e) => { if(e.target === modalBack) close(); });
-    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') close(); });
+      <div class="glass price-card">
+        <h3>30 Minutes</h3>
+        <div class="price">$160</div>
+        <p>Quick reset</p>
+      </div>
 
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+      <div class="glass price-card">
+        <h3>45 Minutes</h3>
+        <div class="price">$200</div>
+        <p>Targeted relief</p>
+      </div>
+
+      <div class="glass price-card">
+        <h3>60 Minutes</h3>
+        <div class="price">$260</div>
+        <p>Full session</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="glass">
+    © <span id="year"></span> Candy Massage & Wellness · Montreal
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
